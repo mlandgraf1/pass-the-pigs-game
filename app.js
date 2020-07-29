@@ -11,21 +11,22 @@ GAME RULES:
 
 var scores, roundScore, activePlayer, gamePlaying;
 
+//init function defined below
 init();
 
-
+//Defines what happens when the player clicks the roll button
 document.querySelector('.btn-roll').addEventListener('click', function() {
     if(gamePlaying) {
-        // 1. Random number
+        //Random number
         var dice = Math.floor(Math.random() * 6) + 1;
 
-        //2. Display the result
+        //Display the result
         var diceDOM = document.querySelector('.dice');
         diceDOM.style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
 
 
-        //3. Update the round score IF the rolled number was NOT a 1
+        //Update the round score IF the rolled number was NOT a 1
         if (dice !== 1) {
             //Add score
             roundScore += dice;
@@ -37,7 +38,7 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     }    
 });
 
-
+//Defines what happens when the player clicks the hold button
 document.querySelector('.btn-hold').addEventListener('click', function() {
     if (gamePlaying) {
         // Add CURRENT score to GLOBAL score
@@ -60,7 +61,7 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
     }
 });
 
-
+//Switches selected player to the other player when a turn ends
 function nextPlayer() {
     //Next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
@@ -78,8 +79,10 @@ function nextPlayer() {
     document.querySelector('.dice').style.display = 'none';
 }
 
+//starts new games when new game button clicked
 document.querySelector('.btn-new').addEventListener('click', init);
 
+//initializes the game
 function init() {
     scores = [0, 0];
     activePlayer = 0;
